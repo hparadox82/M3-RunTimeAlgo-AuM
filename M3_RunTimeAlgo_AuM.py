@@ -3,26 +3,29 @@
 from search_algorithms import recursive_binary_search, iterative_binary_search, sequential_search
 import random
 
-def runtest_2():
-    arr = [random.randint(1,1000) for _ in range(20)]
+def runtest_1():
+    arr = [3, 5, 8, 12, 14, 18, 21]
     arr.sort()
-    print(f"Sorted list: {arr}\n")
-    if random.random()<0.5:
-        target = random.choice(arr)
-    else:
-        target = 999
-    print(f"Target: {target}")
+    target1 = 12 # Present
+    target2 = 9  # Not present
+    
+    # Recursive Binary Search
+    index = recursive_binary_search(arr, target1, 0, len(arr) - 1)
+    print(f"Recursive: {target1} found at index {index}" if index != -1 else f"Recursive: {target1} not found")
+    index = recursive_binary_search(arr, target2, 0, len(arr) - 1)
+    print(f"Recursive: {target2} found at index {index}" if index != -1 else f"Recursive: {target2} not found")
 
+    # Iterative Binary Search
+    index = iterative_binary_search(arr, target1)
+    print(f"Iterative: {target1} found at index {index}" if index != -1 else f"Iterative: {target1} not found")
+    index = iterative_binary_search(arr, target2)
+    print(f"Iterative: {target2} found at index {index}" if index != -1 else f"Iterative: {target2} not found")
 
-    print("Test 2:")
-    idxr = recursive_binary_search(arr, target, 0, len(arr)-1)
-    print(f"Recursive: {'Found' if idxr!=-1 else 'Not Found'}")
-
-    idxi = iterative_binary_search(arr, target)
-    print(f"Iterative: {'Found' if idxi!=-1 else 'Not Found'}")
-
-    idxs = sequential_search(arr, target)
-    print(f"Sequential: {'Found' if idxs!=-1 else 'Not Found'}")
+    # Sequential Search
+    index = sequential_search(arr, target1)
+    print(f"Sequential: {target1} found at index {index}" if index != -1 else f"Sequential: {target1} not found")
+    index = sequential_search(arr, target2)
+    print(f"Sequential: {target2} found at index {index}" if index != -1 else f"Sequential: {target2} not found")
 
 if __name__ == "__main__":
-    runtest_2()
+    runtest_1()
